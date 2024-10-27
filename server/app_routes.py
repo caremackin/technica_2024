@@ -1,5 +1,3 @@
-import nltk
-from nltk.tokenize import sent_tokenize
 from keybert import KeyBERT
 model = KeyBERT('distilbert-base-nli-mean-tokens')
 from bertopic import BERTopic
@@ -10,7 +8,6 @@ from dotenv import load_dotenv
 import os
 import random
 from transformers import pipeline
-import urllib.parse
 from googletrans import Translator
 
 
@@ -60,8 +57,8 @@ def set_app_routes(app):
         for query in keywords:
             url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&q={query}&key={YOUTUBE_API_KEY}'
             
-            # Make a request to the YouTube API
             response = requests.get(url)
+            print(response)
             
             if response.status_code != 200:
                 return jsonify({"error": "Failed to fetch data from YouTube API"}), response.status_code

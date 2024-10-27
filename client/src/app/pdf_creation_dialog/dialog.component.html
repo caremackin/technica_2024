@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Download Vocab PDF</h2>
+<h2 mat-dialog-title>Download Essential Words PDF</h2>
 <mat-dialog-content class="mat-typography">
    <mat-slide-toggle [(ngModel)]="isChecked">Include Spanish Translations</mat-slide-toggle>
         <div class ="image-gallery"*ngFor="let keyword of keywords; let i = index">
@@ -8,6 +8,6 @@
         </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-<button  class="btn" mat-flat-button (click)="generatePDF()">Generate Vocab PDF</button>
+<button  class="btn" mat-flat-button (click)="generatePDF()">Generate Essential Words PDF</button>
   <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>
