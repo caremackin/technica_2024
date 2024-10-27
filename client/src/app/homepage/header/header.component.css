@@ -1,0 +1,34 @@
+.header {
+    background-color: rgb(59, 48, 251);
+    width: 100%; 
+    height: 40px;
+    display: flex;
+    align-items: center; 
+}
+
+.login-btn {
+    margin-left: 87%; 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300; 
+    height: 30px;
+    margin-top: 25px; 
+    color: white;
+}
+
+.signup-btn {
+    margin-left: 20px; 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300; 
+    height: 30px;
+    margin-top: 25px; 
+    color: white;
+}
+
+
+.logout {
+    margin-left: 94%; 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300; 
+    height: 30px;
+    margin-top: 25px; 
+}

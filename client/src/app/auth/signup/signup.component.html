@@ -1,0 +1,30 @@
+<div class="header"> <h3 [routerLink]="['/']">Return</h3></div>
+
+<mat-card class="card">
+    <div class="container">
+    <h4>Sign Up for InPACTful Learning</h4>
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+        <div>
+            <mat-form-field class="form">
+                <mat-label>Full Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="form">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="form">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password">
+            </mat-form-field>
+            <mat-form-field class="form">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput formControlName="confirm_password">
+            </mat-form-field>
+        </div>
+        <div class="container">
+        <button class="btn" mat-flat-button type="submit" [disabled]="!signupForm.valid">Signup</button>
+        </div>
+    </form>
+</mat-card>

@@ -1,0 +1,20 @@
+<div class="header">
+    <h3 [routerLink]="['/']">Return</h3>
+</div>
+<h4>INSTRUCTIONS HERE</h4>
+<mat-card class="card">
+    <div class="container">
+    <h4>Enter Text</h4>
+    </div>
+    <form [formGroup]="signupForm">
+        <div>
+            <mat-form-field class="form">
+                <mat-label>Input Text</mat-label>
+                <textarea matInput formControlName="name"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="container">
+        <button class="btn" mat-flat-button type="submit" [disabled]="!signupForm.valid">Signup</button>
+        </div>
+    </form>
+</mat-card>
