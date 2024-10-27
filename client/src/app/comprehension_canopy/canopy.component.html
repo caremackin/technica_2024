@@ -1,10 +1,10 @@
 <div class="header">
-    <h3 [routerLink]="['/']">Return</h3>
+  <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLink]="['/']" fontIcon="arrow_back" style="color: white;"></mat-icon>
 </div>
 <h4>The Comprehension Canopy is a concept which states that topics should be introduced to students before reading to provide crucial background information. This is an AI powered tool to assist educators in finding these resources. Enter the title and students text below and keywords will be generated. Add and delete as needed to achieve the most optimized vocabulary list. Generate images and videos to go along with the key words. Click images to switch to a different option. </h4>
 <mat-card class="card">
     <div class="container">
-    <h4>Enter Text</h4>
+    <h4>Get Background Information</h4>
     </div>
     <form [formGroup]="textForm" (ngSubmit)="submit()">
         <div>

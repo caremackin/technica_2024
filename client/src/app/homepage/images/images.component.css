@@ -35,16 +35,15 @@
     font-family: 'Roboto', sans-serif; 
     font-weight: 300; 
     color: white;
+    font-size: 3rem; 
 }
 
 .top-left {
     top: 10px;
-    /* bottom: 10px; */
-    left: 10px; /* Position at the left */
+    left: 10px;
 }
 
 .bottom-right {
-    bottom: 10px; /* Position at the bottom */
-    right: 10px; /* Position at the right */
+    bottom: 10px; 
+    right: 10px;
 }
-

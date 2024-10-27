@@ -1,11 +1,10 @@
 <div class="header">
-    <h3 [routerLink]="['/']">Return</h3>
+    <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLink]="['/']" fontIcon="arrow_back" style="color: white;"></mat-icon>
 </div>
-<h4>Getting the gist is done during critical reading, this is when students evaluate, who, what, and why. This AI powered tool is to get straight to the gist so that educators can have an idea of what they are looking for from this exercise. To use, enter text and press generate results to get the gist of the passage in under 200 words. </h4>
-
+<h4>Grasping the main idea is a crucial component of critical reading, where students assess the who, what, and why of a text. This process is foundational to the PACT framework. Our AI-powered tool streamlines this task, enabling educators to quickly and effectively extract the essence of any passage. Simply enter the text and click "Generate Results" to receive a concise summary of the content in under 200 words. </h4>
 <mat-card class="card">
     <div class="container">
-    <h4>Enter Text</h4>
+    <h4>Get the Gist</h4>
     </div>
     <form [formGroup]="textForm" (ngSubmit)="submit()">
         <div>

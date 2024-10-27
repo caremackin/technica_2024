@@ -13,6 +13,7 @@ import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core'
 import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 
+
 @Component({
   selector: 'app-canopy',
   standalone: true,
@@ -24,7 +25,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatCardModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   templateUrl: './gist.component.html',
   styleUrl: './gist.component.css'
