@@ -39,6 +39,11 @@ export class KeywordService {
     reGenImage(keyword:string): Observable<any> {
         return this.http.post<any>(this.url + 'regenImage', { keyword });
     }
+
+    summarizeText(text:string): Observable<any> {
+        return this.http.post<any>(this.url + 'summary', { text });
+    }
 }
+
 
 

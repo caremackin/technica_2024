@@ -22,36 +22,37 @@
         </div>
     </form>
 </mat-card>
+<span></span>
+
+<div class="keyword-container">
+  <h2>Keywords</h2>
+  <section>
+      <mat-form-field class="example-form-field">
+        <mat-label>Keywords</mat-label>
+        <mat-chip-grid #reactiveChipGrid aria-label="Enter reactive form keywords" [formControl]="formControl">
+        @for (keyword of reactiveKeywords(); track keyword) {
+          <mat-chip-row (removed)="removeReactiveKeyword(keyword)">
+            {{keyword}}
+          <button matChipRemove aria-label="'remove reactive form' + keyword">
+            <mat-icon>cancel</mat-icon>
+          </button>
+          </mat-chip-row>
+        }
+        </mat-chip-grid>
+        <input
+          placeholder="New keyword..."
+          [matChipInputFor]="reactiveChipGrid"
+          (matChipInputTokenEnd)="addReactiveKeyword($event)"
+        />
+      </mat-form-field>
+  </section>
+  <div class="container-i">
+    <button class="btn" [disabled]="!text_keywords" mat-flat-button (click)="generateImages()">Generate Images</button>
+    </div>
+</div>
 
 
-<h1>Keywords</h1>
-
-<section>
-    <mat-form-field class="example-form-field">
-      <mat-label>Keywords</mat-label>
-      <mat-chip-grid #reactiveChipGrid aria-label="Enter reactive form keywords" [formControl]="formControl">
-      @for (keyword of reactiveKeywords(); track keyword) {
-        <mat-chip-row (removed)="removeReactiveKeyword(keyword)">
-          {{keyword}}
-        <button matChipRemove aria-label="'remove reactive form' + keyword">
-          <mat-icon>cancel</mat-icon>
-        </button>
-        </mat-chip-row>
-      }
-      </mat-chip-grid>
-      <input
-        placeholder="New keyword..."
-        [matChipInputFor]="reactiveChipGrid"
-        (matChipInputTokenEnd)="addReactiveKeyword($event)"
-      />
-    </mat-form-field>
-</section>
-
-<div class="container">
-  <button class="btn" [disabled]="!text_keywords" mat-flat-button (click)="generateImages()">Generate Images</button>
-  </div>
-
-  <h1>Images</h1>
+  <h2 *ngIf="showResourseSection">Images</h2>
   <div class="image-gallery">
     <div *ngFor="let item of urlList">
       <div style="text-align: center;">
@@ -62,7 +63,7 @@
   </div>
 
 
-  <h1>Videos</h1>
+  <h2 *ngIf="showResourseSection" >Videos</h2>
   <div class="video-container">
     <div *ngFor="let videoId of videoIds">
       <iframe 

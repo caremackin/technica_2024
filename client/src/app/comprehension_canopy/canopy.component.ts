@@ -37,6 +37,7 @@ export class CanopyComponent {
   urlList: Array<any>
   videoIds: Array<string>
   text_keywords: Array<string>
+  showResourseSection: Boolean = false
 
   constructor(private fb: FormBuilder, private router: Router, private genService: KeywordService, private sanitizer: DomSanitizer){
 
@@ -130,6 +131,8 @@ export class CanopyComponent {
 
       this.videoIds = response.map(video => video.videoId)
   })
+
+    this.showResourseSection = true;
   }
 
   getKeywords(){

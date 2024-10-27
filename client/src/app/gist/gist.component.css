@@ -13,3 +13,29 @@ h3{
     font-weight: 300; 
     color: white;
 }
+
+
+.form{
+    padding-top: 10px;
+    width: 70%;
+    margin-left: 15%;
+    justify-content: center;
+}
+
+.card{
+    top:20px;
+    width: 75%;
+    margin-left: 12%;
+    margin-bottom: 20px;
+}
+
+textarea {
+    min-height: 300px;
+}
+
+.container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -3,3 +3,23 @@
 </div>
 <h4>INSTRUCTIONS HERE</h4>
 
+<mat-card class="card">
+    <div class="container">
+    <h4>Enter Text</h4>
+    </div>
+    <form [formGroup]="textForm" (ngSubmit)="submit()">
+        <div>
+            <mat-form-field class="form">
+                <mat-label>Input Text</mat-label>
+                <textarea matInput formControlName="text"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="container">
+        <button class="btn" mat-flat-button type="submit" [disabled]="!textForm.valid">Generate Results</button>
+        </div>
+    </form>
+</mat-card>
+<span></span>
+
+<h1>{{summary}}</h1>
+

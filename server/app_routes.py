@@ -13,6 +13,7 @@ from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
 import os
 import random
+from transformers import pipeline
 
 
 load_dotenv()
@@ -20,6 +21,7 @@ load_dotenv()
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
 
 def get_access_token():
@@ -34,6 +36,9 @@ def get_access_token():
 
 
 def set_app_routes(app):
+    @app.route("/", methods=["GET"])
+    def home():
+        return jsonify({"hello":"word"}), 200
 
     @app.route('/search', methods=['POST'])
     def search_youtube():
@@ -72,46 +77,12 @@ def set_app_routes(app):
 
         return jsonify(keyVideos)
 
-
-
-
-
-    # @app.route('/search_podcasts/<keyword>', methods=['GET'])
-    # def search_podcasts(keyword):
-    #     access_token = get_access_token()
-    #     headers = {
-    #         'Authorization': f'Bearer {access_token}'
-    #     }
-        
-    #     params = {
-    #         'q': f'episode:{keyword}',  # Try different formats if needed
-    #         'type': 'track ',
-    #         'limit': 20,
-    #         'offset': 0
-    #     }
-        
-    #     all_episodes = []
-        
-    #     while True:
-    #         response = requests.get('https://api.spotify.com/v1/search', headers=headers, params=params)
-    #         data = response.json()
-            
-    #         print(f"Request URL: {response.url}")  # Print the request URL for debugging
-    #         print(f"Response Data: {data}")  # Print the entire response data
-            
-    #         all_episodes.extend(data['episodes']['items'])
-
-    #         if data['episodes']['next']:
-    #             params['offset'] += params['limit']  # Update offset for the next request
-    #         else:
-    #             break  # Exit loop if no more pages
-        
-    #     return all_episodes
-
-
-    @app.route("/", methods=["GET"])
-    def home():
-        return jsonify({"hello":"word"}), 200
+    @app.route("/summary", methods=["POST"])
+    def summarization():
+        data = request.get_json()
+        article = data.get("text")
+        summary = summarizer(article, max_length=200, min_length=30)
+        return jsonify({"summary": summary})
 
     @app.route("/keywords", methods=["POST"])
     def get_key_words():

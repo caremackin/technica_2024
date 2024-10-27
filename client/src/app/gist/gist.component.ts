@@ -12,7 +12,6 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
-import { WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'app-canopy',
@@ -25,17 +24,38 @@ import { WritableSignal } from '@angular/core';
     MatButtonModule,
     MatCardModule,
     RouterModule,
-    CommonModule,
-    MatChipsModule,
-    MatIconModule
   ],
   templateUrl: './gist.component.html',
   styleUrl: './gist.component.css'
 })
 export class GistComponent {
 
-  constructor(private fb: FormBuilder, private router: Router, private genService: KeywordService, private sanitizer: DomSanitizer){
+  textForm!: FormGroup;
+  summary: string
+  constructor(private fb: FormBuilder, private router: Router, private genService: KeywordService){
 
   }
+
+  ngOnInit(){
+    this.textForm = this.createFormGroup();
+  }
+
+  submit(){
+    console.log(this.textForm.value)
+    this.genService.summarizeText(this.textForm.value.text).subscribe(response => {
+      console.log(response);
+      this.summary = response.summary[0].summary_text
+    });
+  }
+
+  createFormGroup(): FormGroup {
+    return new FormGroup({
+      text: new FormControl("",[
+        Validators.required,
+        Validators.minLength(10)
+      ])
+    })
+  }
+
 
 }
