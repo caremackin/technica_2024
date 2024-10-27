@@ -6,15 +6,25 @@
     <div class="container">
     <h4>Enter Text</h4>
     </div>
-    <form [formGroup]="signupForm">
+    <form [formGroup]="textForm" (ngSubmit)="submit()">
         <div>
             <mat-form-field class="form">
                 <mat-label>Input Text</mat-label>
-                <textarea matInput formControlName="name"></textarea>
+                <textarea matInput formControlName="text"></textarea>
             </mat-form-field>
         </div>
         <div class="container">
-        <button class="btn" mat-flat-button type="submit" [disabled]="!signupForm.valid">Signup</button>
+        <button class="btn" mat-flat-button type="submit" [disabled]="!textForm.valid">Generate Results</button>
         </div>
     </form>
 </mat-card>
+
+
+<h1>Images</h1>
+<div class="image-gallery">
+    <div *ngFor="let url of urlList">
+      <img [src]="url" alt="Image" class="gallery-image" />
+    </div>
+  </div>
+
+

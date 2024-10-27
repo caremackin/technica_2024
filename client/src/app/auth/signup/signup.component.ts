@@ -58,11 +58,6 @@ export class SignupComponent {
     this.router.navigate(['/']);
   }
   
-  validateSignUp(){
-    
-  }
-
-
 
   addUser(): void {
     this.signUpService.addUser(this.signupForm.value).subscribe((newUser) => {
