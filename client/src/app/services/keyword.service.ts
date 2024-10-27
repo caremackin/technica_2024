@@ -43,6 +43,10 @@ export class KeywordService {
     summarizeText(text:string): Observable<any> {
         return this.http.post<any>(this.url + 'summary', { text });
     }
+
+    translate(keywords:Array<string>): Observable<any> {
+        return this.http.post<any>(this.url + 'translate', { 'keywords': keywords });
+    }
 }
 
 

@@ -62,7 +62,7 @@
     </div>
   </div>
   <div class="container-i">
-    <button *ngIf="showResourseSection" class="btn" [disabled]="!text_keywords" mat-flat-button (click)="generatePDF()">Generate Vocab PDF</button>
+    <button *ngIf="showResourseSection" class="btn" [disabled]="!text_keywords" mat-flat-button (click)="openDialog()">Generate Vocab PDF</button>
   </div>
 
   <h2 *ngIf="showResourseSection" >Videos</h2>

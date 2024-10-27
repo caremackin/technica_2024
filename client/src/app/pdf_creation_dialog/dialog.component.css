@@ -1,0 +1,21 @@
+mat-dialog-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr));
+    gap: 10px;
+    justify-content: center; 
+  }
+  
+  .gallery-image {
+    max-width: 400px; 
+    object-fit: cover;
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    justify-content: center; 
+  }
+
+  .container-i{
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }

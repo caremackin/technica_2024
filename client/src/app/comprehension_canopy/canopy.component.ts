@@ -9,11 +9,11 @@ import { KeywordService} from '../services/keyword.service'
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
-import { WritableSignal } from '@angular/core';
-import jsPDF from 'jspdf';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from '../pdf_creation_dialog/dialog.component';
 
 @Component({
   selector: 'app-canopy',
@@ -28,7 +28,9 @@ import jsPDF from 'jspdf';
     RouterModule,
     CommonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule, 
+    MatDialogModule,
   ],
   templateUrl: './canopy.component.html',
   styleUrl: './canopy.component.css'
@@ -52,6 +54,20 @@ export class CanopyComponent {
   readonly formControl = new FormControl(['angular']);
 
   announcer = inject(LiveAnnouncer);
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: "1000px",
+      data: {
+      urls: this.urlList
+    }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   removeReactiveKeyword(keyword: string) {
     this.reactiveKeywords.update(keywords => {
@@ -157,9 +173,7 @@ export class CanopyComponent {
     })
   }
 
-  generatePDF() {
-    const doc = new jsPDF();
-    doc.text('Hello world!', 10, 10);
-    doc.save('sample.pdf');
-  }
+ 
+
+
 }

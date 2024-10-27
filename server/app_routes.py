@@ -26,19 +26,28 @@ def set_app_routes(app):
     def home():
         return jsonify({"hello":"word"}), 200
     
+  
     @app.route('/translate', methods=['POST'])
     def translate():
         data = request.get_json()
-        text_to_translate = data.get("query")
- 
+        keywords = data.get("keywords", [])  
+        translated_words = []
+        
         translator = Translator()
 
+        for keyword in keywords:
+            try:
+                translated = translator.translate(keyword, dest='es')
+                if translated is not None:
+                    translated_words.append(translated.text) 
+                    print(f'Translated "{keyword}" to "{translated.text}"')
+                else:
+                    print(f'No translation found for "{keyword}"')
+            except Exception as e:
+                print(f'Error translating "{keyword}": {e}')
+                translated_words.append('')  
 
-        translated = translator.translate(text_to_translate, dest='es')
-
-        # Print the translated text
-        print(f'Translated Text: {translated.text}')
-        return jsonify({"translation": translated.text}), 201
+        return jsonify({"translation": translated_words}), 201
 
 
     @app.route('/search', methods=['POST'])
