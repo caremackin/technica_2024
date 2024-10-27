@@ -24,6 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatCardModule,
     RouterModule,
+    CommonModule
   ],
   templateUrl: './gist.component.html',
   styleUrl: './gist.component.css'

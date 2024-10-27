@@ -12,14 +12,31 @@ h3{
     font-family: 'Roboto', sans-serif; 
     font-weight: 300; 
     color: white;
+} 
+
+.text {
+    flex: 1; 
+    padding-top: 25px;
+    padding-bottom: 100px;
+    margin-right: 10%;
+    margin-left: 10%;
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300; 
+    justify-content: center;
 }
 
+.text h3{
+    margin-left: 47.5%;
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300; 
+    color: black;
+    justify-content: center;
+}
 
 .form{
     padding-top: 10px;
     width: 70%;
     margin-left: 15%;
-    justify-content: center;
 }
 
 .card{
@@ -38,4 +55,13 @@ textarea {
     justify-content: center; 
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+
+h4{
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300; 
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }

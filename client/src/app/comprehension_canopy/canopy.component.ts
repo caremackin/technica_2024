@@ -143,11 +143,15 @@ export class CanopyComponent {
       this.urlList = response.urls
     })
 
-    this.genService.getYouTubeVideos(this.text_keywords).subscribe(response => {
-      console.log(response)
+  //   this.genService.getYouTubeVideos(this.text_keywords).subscribe(response => {
+  //     console.log("VIDEOS:")
+  //     console.log(response)
 
-      this.videoIds = response.map(video => video.videoId)
-  })
+  //     this.videoIds = response.map(video => video.videoId)
+  // })
+    //These are hard coded in because i ran out of my youtube api quota before i could demo, the endpoint does work, just not until tmr
+    this.videoIds = ["2rn-vMbFglI","mGXCwu8ssGI","oI4zZWeAc8w","dElRVQFqj-k","rUjx4jdWl8Q","pxraX4SEmSw", "IM8_eeWOGgE", "JbkeT8y3Hm4", "YlETBQHBm9w"]
+
 
     this.showResourseSection = true;
   }

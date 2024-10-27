@@ -54,35 +54,65 @@ export class DialogComponent {
      }
 
      generatePDF() {
-        const docDefinition = {
-          content: [
-            { text: 'Vocabulary PDF', style: 'header' },
-            { text: 'Keywords:', style: 'subheader' },
-            ...this.keywords.map((keyword, index) => ({
-              text: `${keyword} - ${this.translations[index] || ''}`,
-              style: 'listItem',
-            })),
-          ],
-          styles: {
-            header: {
-              fontSize: 18,
-              bold: true,
-              margin: [0, 0, 0, 10], // top, right, bottom, left
-            },
-            subheader: {
-              fontSize: 14,
-              bold: true,
-              margin: [0, 10, 0, 5],
-            },
-            listItem: {
-              fontSize: 12,
-              margin: [0, 5, 0, 5],
-            },
-          },
-        };
-      
-        // Generate and download the PDF
-        pdfMake.createPdf(docDefinition).download('vocab.pdf');
+        if(this.isChecked){
+            const docDefinition = {
+                content: [
+                  { text: 'Vocabulary PDF', style: 'header' },
+                  { text: 'Keywords:', style: 'subheader' },
+                  ...this.keywords.map((keyword, index) => ({
+                    text: `${keyword} - ${this.translations[index] || ''}`,
+                    style: 'listItem',
+                  })),
+                ],
+                styles: {
+                  header: {
+                    fontSize: 18,
+                    bold: true,
+                    margin: [0, 0, 0, 10], 
+                  },
+                  subheader: {
+                    fontSize: 14,
+                    bold: true,
+                    margin: [0, 10, 0, 5],
+                  },
+                  listItem: {
+                    fontSize: 12,
+                    margin: [0, 5, 0, 5],
+                  },
+                },
+              };
+            pdfMake.createPdf(docDefinition).download('vocab.pdf');
+        }  else {
+            const docDefinition = {
+                content: [
+                  { text: 'Vocabulary PDF', style: 'header' },
+                  { text: 'Keywords:', style: 'subheader' },
+                  ...this.keywords.map((keyword) => ({
+                    text: keyword,
+                    style: 'listItem',
+                  })),
+                ],
+                styles: {
+                  header: {
+                    fontSize: 18,
+                    bold: true,
+                    margin: [0, 0, 0, 10], 
+                  },
+                  subheader: {
+                    fontSize: 14,
+                    bold: true,
+                    margin: [0, 10, 0, 5],
+                  },
+                  listItem: {
+                    fontSize: 12,
+                    margin: [0, 5, 0, 5],
+                  },
+                },
+              };
+
+            pdfMake.createPdf(docDefinition).download('vocab.pdf');
+        }
+
       }
       
     }

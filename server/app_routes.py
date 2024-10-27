@@ -52,16 +52,12 @@ def set_app_routes(app):
 
     @app.route('/search', methods=['POST'])
     def search_youtube():
-        # Get the search query from query parameters
         data = request.get_json()
         keywords = data.get("keywords")
         keyVideos =[]
-
         if not keywords:
             return jsonify({"error": "Query parameter is required"}), 400
-
         for query in keywords:
-            # YouTube API endpoint for search
             url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&q={query}&key={YOUTUBE_API_KEY}'
             
             # Make a request to the YouTube API
@@ -69,10 +65,7 @@ def set_app_routes(app):
             
             if response.status_code != 200:
                 return jsonify({"error": "Failed to fetch data from YouTube API"}), response.status_code
-
             data = response.json()
-
-
             # Extract relevant information from the response
             videos = []
             for item in data.get('items', [])[:1]:  # Limit to 2 items
@@ -84,8 +77,9 @@ def set_app_routes(app):
                         'thumbnail': item['snippet']['thumbnails']['default']['url']
                     })
             keyVideos += videos
-
         return jsonify(keyVideos)
+
+
 
     @app.route("/summary", methods=["POST"])
     def summarization():

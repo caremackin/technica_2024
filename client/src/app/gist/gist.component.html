@@ -1,7 +1,7 @@
 <div class="header">
     <h3 [routerLink]="['/']">Return</h3>
 </div>
-<h4>INSTRUCTIONS HERE</h4>
+<h4>Getting the gist is done during critical reading, this is when students evaluate, who, what, and why. This AI powered tool is to get straight to the gist so that educators can have an idea of what they are looking for from this exercise. To use, enter text and press generate results to get the gist of the passage in under 200 words. </h4>
 
 <mat-card class="card">
     <div class="container">
@@ -20,6 +20,8 @@
     </form>
 </mat-card>
 <span></span>
-
-<h1>{{summary}}</h1>
+<div class ="text">
+    <h3 *ngIf="summary">Gist</h3>
+    <p>{{summary}}</p>
+</div>
 
