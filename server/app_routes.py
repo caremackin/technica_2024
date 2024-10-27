@@ -13,6 +13,7 @@ from googletrans import Translator
 
 load_dotenv()
 
+SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
@@ -133,8 +134,8 @@ def set_app_routes(app):
         
 
     def get_google_images(query, num_images):
-        api_key = 'AIzaSyD3ma4mpbVJ5hNhNOKn3QdhiEOztn-AkYE'  
-        search_engine_id = 'a1c8f1503f5e248bb'
+        api_key = YOUTUBE_API_KEY
+        search_engine_id = SEARCH_ENGINE_ID
         
         url = 'https://www.googleapis.com/customsearch/v1'
         params = {
