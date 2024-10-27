@@ -1,7 +1,7 @@
 <div class="header">
     <h3 [routerLink]="['/']">Return</h3>
 </div>
-<h4>INSTRUCTIONS HERE</h4>
+<h4>The Comprehension Canopy is a concept which states that topics should be introduced to students before reading to provide crucial background information. This is an AI powered tool to assist educators in finding these resources. Enter the title and students text below and keywords will be generated. Add and delete as needed to achieve the most optimized vocabulary list. Generate images and videos to go along with the key words. Click images to switch to a different option. </h4>
 <mat-card class="card">
     <div class="container">
     <h4>Enter Text</h4>
@@ -18,7 +18,7 @@
             </mat-form-field>
         </div>
         <div class="container">
-        <button class="btn" mat-flat-button type="submit" [disabled]="!textForm.valid">Generate Results</button>
+        <button class="btn" mat-flat-button type="submit" [disabled]="!textForm.valid">Generate Keywords</button>
         </div>
     </form>
 </mat-card>
@@ -61,7 +61,9 @@
       </div>
     </div>
   </div>
-
+  <div class="container-i">
+    <button *ngIf="showResourseSection" class="btn" [disabled]="!text_keywords" mat-flat-button (click)="generatePDF()">Generate Vocab PDF</button>
+  </div>
 
   <h2 *ngIf="showResourseSection" >Videos</h2>
   <div class="video-container">

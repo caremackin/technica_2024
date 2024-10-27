@@ -1,7 +1,3 @@
-# from nltk.corpus import stopwords
-# from nltk.tokenize import word_tokenize
-# import re
-# import string
 import nltk
 from nltk.tokenize import sent_tokenize
 from keybert import KeyBERT
@@ -14,6 +10,8 @@ from dotenv import load_dotenv
 import os
 import random
 from transformers import pipeline
+import urllib.parse
+from googletrans import Translator
 
 
 load_dotenv()
@@ -23,22 +21,25 @@ CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
-
-def get_access_token():
-    response = requests.post(
-        'https://accounts.spotify.com/api/token',
-        data={'grant_type': 'client_credentials'},
-        auth=HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
-    )
-    response_data = response.json()
-    return response_data['access_token']
-
-
-
 def set_app_routes(app):
     @app.route("/", methods=["GET"])
     def home():
         return jsonify({"hello":"word"}), 200
+    
+    @app.route('/translate', methods=['POST'])
+    def translate():
+        data = request.get_json()
+        text_to_translate = data.get("query")
+ 
+        translator = Translator()
+
+
+        translated = translator.translate(text_to_translate, dest='es')
+
+        # Print the translated text
+        print(f'Translated Text: {translated.text}')
+        return jsonify({"translation": translated.text}), 201
+
 
     @app.route('/search', methods=['POST'])
     def search_youtube():
@@ -152,4 +153,6 @@ def set_app_routes(app):
         else:
             print(f"Error: {response.status_code} - {response.text}")
             return []
+
+
 

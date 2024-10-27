@@ -13,6 +13,7 @@ import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core'
 import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { WritableSignal } from '@angular/core';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-canopy',
@@ -154,5 +155,11 @@ export class CanopyComponent {
       console.log("URL:", response); 
       this.urlList[word_index][1] = response.image_url;
     })
+  }
+
+  generatePDF() {
+    const doc = new jsPDF();
+    doc.text('Hello world!', 10, 10);
+    doc.save('sample.pdf');
   }
 }
