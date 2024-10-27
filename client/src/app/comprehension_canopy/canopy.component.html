@@ -9,6 +9,10 @@
     <form [formGroup]="textForm" (ngSubmit)="submit()">
         <div>
             <mat-form-field class="form">
+                <mat-label>Input Content Title</mat-label>
+                <input matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field class="form">
                 <mat-label>Input Text</mat-label>
                 <textarea matInput formControlName="text"></textarea>
             </mat-form-field>
@@ -20,11 +24,52 @@
 </mat-card>
 
 
-<h1>Images</h1>
-<div class="image-gallery">
-    <div *ngFor="let url of urlList">
-      <img [src]="url" alt="Image" class="gallery-image" />
+<h1>Keywords</h1>
+
+<section>
+    <mat-form-field class="example-form-field">
+      <mat-label>Keywords</mat-label>
+      <mat-chip-grid #reactiveChipGrid aria-label="Enter reactive form keywords" [formControl]="formControl">
+      @for (keyword of reactiveKeywords(); track keyword) {
+        <mat-chip-row (removed)="removeReactiveKeyword(keyword)">
+          {{keyword}}
+        <button matChipRemove aria-label="'remove reactive form' + keyword">
+          <mat-icon>cancel</mat-icon>
+        </button>
+        </mat-chip-row>
+      }
+      </mat-chip-grid>
+      <input
+        placeholder="New keyword..."
+        [matChipInputFor]="reactiveChipGrid"
+        (matChipInputTokenEnd)="addReactiveKeyword($event)"
+      />
+    </mat-form-field>
+</section>
+
+<div class="container">
+  <button class="btn" [disabled]="!text_keywords" mat-flat-button (click)="generateImages()">Generate Images</button>
+  </div>
+
+  <h1>Images</h1>
+  <div class="image-gallery">
+    <div *ngFor="let item of urlList">
+      <div style="text-align: center;">
+        <p>{{ item[0] }}</p> 
+        <img [src]="item[1]" alt="Image" class="gallery-image" (click)="reGenerate(item[0], item[1])"/>
+      </div>
     </div>
   </div>
 
+
+  <h1>Videos</h1>
+  <div class="video-container">
+    <div *ngFor="let videoId of videoIds">
+      <iframe 
+        [src]="getSanitizedUrl(videoId)" 
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
 

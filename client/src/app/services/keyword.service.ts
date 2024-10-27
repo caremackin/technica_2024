@@ -31,5 +31,14 @@ export class KeywordService {
     getImageUrls(keywords:Array<string>): Observable<any> {
         return this.http.post<any>(this.url + 'images', { keywords });
     }
+
+    getYouTubeVideos(keywords:Array<string>): Observable<any> {
+        return this.http.post<any>(this.url + 'search', { 'keywords': keywords });
+    }
+
+    reGenImage(keyword:string): Observable<any> {
+        return this.http.post<any>(this.url + 'regenImage', { keyword });
+    }
 }
+
 

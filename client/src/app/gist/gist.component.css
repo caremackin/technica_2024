@@ -1,0 +1,15 @@
+.header {
+    background-color: rgb(59, 48, 251);
+    width: 100%; 
+    height: 40px;
+    display: flex;
+    align-items: center; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+h3{
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300; 
+    color: white;
+}
